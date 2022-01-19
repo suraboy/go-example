@@ -38,11 +38,7 @@ func TimeHandler(writer http.ResponseWriter, request *http.Request) {
 		parsedData := &Response{
 			CurrentTime: time.Now().In(loc).String(),
 		}
-		responseData, err := json.Marshal(parsedData)
-		if err != nil {
-			// handle error
-		}
-
+		responseData, _ := json.Marshal(parsedData)
 		writer.Header().Set("Content-Type", "application/json")
 		writer.Write(responseData)
 	} else {
@@ -51,13 +47,7 @@ func TimeHandler(writer http.ResponseWriter, request *http.Request) {
 			var loc, _ = time.LoadLocation(v)
 			parsedData[v] = time.Now().In(loc).String()
 		}
-
-
-		responseData, err := json.Marshal(parsedData)
-		if err != nil {
-			// handle error
-		}
-
+		responseData, _ := json.Marshal(parsedData)
 		writer.Header().Set("Content-Type", "application/json")
 		writer.Write(responseData)
 	}
