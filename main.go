@@ -13,7 +13,7 @@ func main() {
 
 	r := mux.NewRouter()
 
-	r.HandleFunc("/api/time", HomeHandler)
+	r.HandleFunc("/api/time", TimeHandler)
 
 	srv := &http.Server{
 		Handler: r,
@@ -31,7 +31,7 @@ type Response struct {
 	CurrentTime string `json:"current_time,omitempty"`
 }
 
-func HomeHandler(writer http.ResponseWriter, request *http.Request) {
+func TimeHandler(writer http.ResponseWriter, request *http.Request) {
 	var timezones = strings.Split(request.URL.Query().Get("tz"), ",")
 	if len(timezones) <= 1 {
 		var loc, _ = time.LoadLocation(request.URL.Query().Get("tz"))
