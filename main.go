@@ -7,12 +7,14 @@ import (
 	"net/http"
 	"strings"
 	time "time"
+	"go-example/services/customers'
 )
 
 func main() {
 
 	r := mux.NewRouter()
 
+	r.HandleFunc("/api/customers", customers.GetCustomers)
 	r.HandleFunc("/api/time", TimeHandler)
 
 	srv := &http.Server{
