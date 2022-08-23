@@ -4,7 +4,7 @@ package customers
  * Created by boy.sirichai on 23/8/2022 AD
  */
 import (
-	"github.com/gofiber/fiber/v2"
+	"net/http"
 )
 
 // Handler type
@@ -20,10 +20,6 @@ func NewHandler(service Servicer) *Handler {
 }
 
 
-func (h *Handler) GetCustomers(c *fiber.Ctx) error {
-	result, err := h.service.GetSymbols()
-	if err != nil {
-		return err
-	}
-	return c.JSON(result)
+func (h *Handler) GetCustomers(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("Gorilla!\n"))
 }
