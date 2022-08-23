@@ -3,18 +3,19 @@ package main
 import (
 	"encoding/json"
 	"github.com/gorilla/mux"
+	"github.com/suraboy/go-example/serivices/customers"
 	"log"
 	"net/http"
 	"strings"
 	time "time"
-	"go-example/services/customers'
 )
 
 func main() {
 
 	r := mux.NewRouter()
-
-	r.HandleFunc("/api/customers", customers.GetCustomers)
+	customersService    = customers.NewService()
+	customersHandler     = customers.NewHandler(customersService)
+	r.HandleFunc("/api/customers", customersHandler.GetCustomers)
 	r.HandleFunc("/api/time", TimeHandler)
 
 	srv := &http.Server{

@@ -11,6 +11,11 @@ type Servicer interface {
 type Service struct {
 }
 
+func NewService() *Service {
+	return &Service{
+	}
+}
+
 func (s *Service) GetSymbols() (map[string]interface{}, error) {
 
 	return map[string]interface{}{
